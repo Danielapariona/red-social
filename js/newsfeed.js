@@ -6,24 +6,13 @@ var config = {
   storageBucket: "iread-47442.appspot.com",
   messagingSenderId: "816960626052"
 };
+
 firebase.initializeApp(config);
 
 //eventos
 $('#submit-js').on('click', post);
 $('#href-js').on('click', post);
 $('#logout-js').on('click', logout);
-
-sessionActive();
-function logout() {
-  firebase.auth().signOut()
-    .then(function (result) {
-      console.log('Te has desconectado correctamente');
-      location.href = "../";
-    })
-    .catch(function (error) {
-      console.log(`Error ${error.code}: ${error.message}`)
-    })
-}
 
 function sessionActive() {
   firebase.auth().onAuthStateChanged(function (user) {
@@ -51,36 +40,89 @@ function writeUserData(userId, name, email, imageUrl) {
 
 function post(event) {
   event.preventDefault();
+  var $today = getToday();
+  var $time = getTime();
   var $content = $('#content-post-js').val();
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      writeUserPost(user.uid, user.displayName, $content);
+      writeUserPost(user.uid, user.displayName, $content, $time, $today);
       $('#content-post-js').val('');
       $('#content-post-js').focus();
     }
   });
+  location.reload(true);
 }
 
-function writeUserPost(userId, name, content) {
-  var ref = firebase.database().ref('users/' + userId);
-  var postsRef = ref.child("posts");
-  var newPostRef = postsRef.push();
-  newPostRef.set({
+function writeUserPost(userId, name, content, time, today) {
+  firebase.database().ref('posts').push({
+    uid: userId,
     author: name,
-    content: content
+    content: content,
+    time: time,
+    today: today
   });
 }
 
+sessionActive();
 recoverUserPost();
 
 function recoverUserPost() {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      var ref = firebase.database().ref('users/' + user.uid).child("posts");
-      ref.orderByChild("content").on("child_added", function (snapshot) {
-        //console.log(snapshot.val().content);
-        $('#all-post-js').append('<div><p>' + user.displayName + '</p>' + '<p>' + snapshot.val().content + '</p')
-      });
-    }
-  });
+  firebase.database().ref('posts').on('value', function (snapshot) {
+    snapshot.forEach(function (e) {
+      var element = e.val();
+      console.log(element);
+      var author = element.author;
+      var content = element.content;
+      var time = element.time;
+      var todayPost = element.today;
+      $('#all-post-js').prepend('<div><p>' + author + '</p>' + '<p>' + content + '</p>' + '<p class="time">Hora: ' + time + ' ' + todayPost);
+    })
+  })
 }
+
+function logout() {
+  firebase.auth().signOut()
+    .then(function (result) {
+      console.log('Te has desconectado correctamente');
+      location.href = "../";
+    })
+    .catch(function (error) {
+      console.log(`Error ${error.code}: ${error.message}`)
+    })
+}
+
+function getTime() {
+  var f = new Date();
+  var time = f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds();
+  return time;
+}
+
+function getToday() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+  var today = dd + '/' + mm + '/' + yyyy;
+  return today;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
