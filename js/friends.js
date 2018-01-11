@@ -8,14 +8,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
-alert('Amigo');
-var db = firebaseAdmin.database();
+getUsers();
 
-var ref = db.ref("users");
-ref.orderByChild("height").on("child_added", function(snapshot) {
-  console.log(snapshot.key + " was " + snapshot.val().height + " meters tall");
-});
-
-// Get a reference to the database service
-
-
+function getUsers() {
+  firebase.database().ref('users').on('value', function (snapshot) {
+    snapshot.forEach(function (e) {
+      var element = e.val();
+      console.log(element);
+      var username = element.username;      
+      var email = element.email;
+      var profile_picture = element.profile_picture;
+      $('#users-js').append('<div><a href='+'#'+'>'+username +'</a>'+'<img src="' + profile_picture+'"'+'</img></div>');
+    })
+  })
+}
