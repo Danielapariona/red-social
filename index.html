@@ -4,22 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="vendors/semantic/semantic.min.css">
   <link rel="stylesheet" href="css/main.css">
   <title>sign up</title>
 </head>
 
 <body>
-  <div id="login">
-    <button id="start-login-js">
-      Iniciar sesion con google
-    </button>
-  </div>
+  <section>
+    <div class="ui two column stackable grid">
+      <div class="seven wide column right floated">
+        <div class="container-tab">
+          <div class="ui top attached tabular menu">
+            <a class="active item" data-tab="first">Ingresa</a>
+          </div>
+          <div class="ui bottom attached active tab segment">
+            <div class="ui form">
+              <!-- <button class="ui facebook button">
+                <i class="facebook icon"></i>
+                Facebook
+              </button> -->
+              <button class="ui negative google button large" id="start-login-js">
+                <i class="google plus icon"></i>
+                Iniciar sesion con google
+              </button>
+              <br>
+              <br>
+              <div class="ui horizontal divider">
+                o
+              </div>
+              <br>
+              <div class="field">
+                <input type="text" name="correo-electrónico" placeholder="correo electrónico">
+              </div>
+              <div class="field">
+                <input type="text" name="contraseña" placeholder="password">
+              </div>
+              <button class="ui button" type="submit">Ingresa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Add jquery -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <!-- Add Firebase -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-
+  <script src="vendors/semantic/semantic.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 

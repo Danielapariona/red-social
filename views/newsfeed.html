@@ -4,18 +4,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../vendors/semantic/semantic.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/main.css">
   <title>sign up</title>
 </head>
 
 <body>
-  <section id="app">
-    <p id="name-js"></p>
-    <img id="photoUrl-js" src="" alt="">
-    <button id="logout-js">Salir</button>
-  </section>
-  
-  <section>
+  <div class="ui brown inverted menu two column stackable grid">
+    <div class="left menu">
+      <a class="item active">
+        <span>
+          iRead
+        </span>
+      </a>
+      <div class="ui category search item">
+        <div class="ui icon input">
+          <input class="prompt" type="text" placeholder="Search ...">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+    </div>
+    <div class="right menu">
+      <li class="ui item name-js"></li>
+      <li class="ui item">
+        <img class="photoUrl-js ui avatar image" src="" alt="">
+      </li>
+      <li id="logout-js" class="ui item">Cerrar Sesión</li>
+    </div>
+  </div>
+
+  <h2 class="ui header">
+    <i class="world icon"></i>
+    <div class="content">
+      Noticias
+    </div>
+  </h2>
+  <main>
+    <div class="ui two stackable column grid">
+      <div class="ui container">
+        <div class="ten wide column ">
+          <div class="ui segment">
+            <!--contenido-->
+            <div class="ui comments">
+              <div class="comment">
+                <a class="avatar">
+                  <!-- <img src="../assets/images/barry.jpg"> -->
+                  <img class="photoUrl-js ui avatar image" src="" alt="">
+                </a>
+                <div class="content container centered">
+                  <a class="author name-js"></a>
+                  <form class="ui reply form">
+                    <div class="field">
+                      <textarea name="" id="content-post-js"></textarea>
+                    </div>
+                    <progress value="0" max="100" id="uploader-js">0%</progress>
+                    <input type="file" value="upload" id="fileButton-js">
+                    <button id="submit-js" class="ui brown primary button">
+                      Publicar
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui feed" id="all-post-js">
+          </div>
+
+        </div>
+      </div>
+      <!--fin de contenido-->
+  </main>
+
+
+
+  <!-- <section>
     <form action="">
       <textarea name="" id="content-post-js" cols="30" rows="10"></textarea>
       <button id="submit-js">Enviar</button>
@@ -26,7 +90,7 @@
   </section>
   <section id="all-post-js">
     
-  </section>
+  </section> -->
   <!-- Jquery -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <!-- Firebase -->
