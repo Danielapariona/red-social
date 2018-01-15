@@ -28,10 +28,78 @@
     </div>
     <div class="right menu">
       <li id="name-js" class="ui item"></li>
-      <li class="ui item"><img id="photoUrl-js" src="" alt="" class="ui avatar image"></li>
+      <li class="ui item">
+        <img id="photoUrl-js" src="" alt="" class="ui avatar image">
+      </li>
       <li id="logout-js" class="ui item">Cerrar Sesión</li>
     </div>
   </div>
+
+  <h2 class="ui header">
+    <i class="world icon"></i>
+    <div class="content">
+      Noticias
+    </div>
+  </h2>
+  <main>
+    <div class="ui two stackable column grid">
+      <div class="ten wide column ">
+        <div class="ui segment">
+          <!--contenido-->
+          <div class="ui comments">
+            <div class="comment">
+              <a class="avatar">
+                <img src="../assets/images/barry.jpg">
+              </a>
+              <div class="content container centered">
+                <a class="author">Barry Allen</a>
+                <div class="metadata">
+                  <div class="date">2 days ago</div>
+                </div>
+
+                <form class="ui reply form">
+                  <div class="field">
+                    <textarea name="" id="content-post-js"></textarea>
+                  </div>
+                  <button id="submit-js" class="ui brown submit labeled icon button">
+                    Publicar
+                  </button>
+                </form>
+                <progress value="0" max="100" id="uploader-js">0%</progress>
+                <input type="file" value="upload" id="fileButton-js">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui feed" id="all-post-js">
+        </div>
+      </div>
+      <div class="six wide column">
+        <div class="ui segment">
+          <!--contenido-->
+          <div class="ui link cards container centered">
+            <div class="card">
+              <div class="image">
+                <img src="../assets/images/libros-3.jpg">
+              </div>
+              <div class="content">
+                <div class="header">Evento</div>
+                <div class="meta">
+                  <a>Friends</a>
+                </div>
+                <div class="description">
+                  Matthew is an interior designer living in New York.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--fin de contenido-->
+  </main>
+
+
+
   <!-- <section>
     <form action="">
       <textarea name="" id="content-post-js" cols="30" rows="10"></textarea>

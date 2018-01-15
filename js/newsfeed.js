@@ -125,7 +125,14 @@ function recoverUserPost() {
         var urlImage = element.url;
         var time = element.time;
         var todayPost = element.today;
-        $('#all-post-js').prepend("<div>" + "<img src='" + photoAuthor + "'/>" + '<p>' + author + '</p>' + '<p>' + content + '</p>' + '<p class="time">Hora: ' + time + ' ' + todayPost + '<img src=' + urlImage + '>' + '</img>');
+
+        /* $('#all-post-js').prepend("<div>" + "<img src='" + photoAuthor + "'/>" + '<p>' + author + '</p>' + '<p>' + content + '</p>' + '<p class="time">Hora: ' + time + ' ' + todayPost + '<img  class="ui fluid image" src=' + urlImage + '>' + '</img>'); */
+
+        $('#all-post-js').prepend('<div class="event"><div class="label"><img src="' + photoAuthor + '"></div><div class="content"><div class="summary"><a>' + author + '</a><div class="date">' + time + ' ' + todayPost + '</div></div><div class="extra text">' +
+        content + '</div><div class="extra images"><a><img src="' + urlImage + '">              </a></div></div></div>')
+
+
+
       });
     })
   })
