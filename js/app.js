@@ -19,8 +19,8 @@ function googleLogin() {
     .then(function (result) {
       console.log(`${result.user.email} ha iniciado sesión`);
       var user = result.user;
-      location.href = "views/newsfeed.html";
-      // location.href = "iRead/views/newsfeed.html";
+      //location.href = "views/newsfeed.html";
+      location.href = "iRead/views/newsfeed.html";
     })
     .catch(function (error) {
       console.log(`Error ${error.code}: ${error.message}`)
@@ -33,8 +33,8 @@ function active() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log('sesion activa del index');
-      location.href = "../views/newsfeed.html";
-      // location.href = "../iRead/views/newsfeed.html";
+      //location.href = "../views/newsfeed.html";
+      location.href = "../iRead/views/newsfeed.html";
     } else {
       console.log('sesion cerrada del index');
     }
