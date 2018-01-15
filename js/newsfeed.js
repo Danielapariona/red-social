@@ -31,8 +31,8 @@ function sessionActive() {
       console.log('sesion activa de newsfeed');
       name = user.displayName;
       photoUrl = user.photoURL;
-      $('#name-js').text(name);
-      $('#photoUrl-js').attr("src", photoUrl);
+      $('.name-js').text(name);
+      $('.photoUrl-js').attr("src", photoUrl);
       console.log(user);
       writeUserData(user.uid, name, user.email, photoUrl)
     } else {
@@ -125,7 +125,14 @@ function recoverUserPost() {
         var urlImage = element.url;
         var time = element.time;
         var todayPost = element.today;
-        $('#all-post-js').prepend("<div>" + "<img src='" + photoAuthor + "'/>" + '<p>' + author + '</p>' + '<p>' + content + '</p>' + '<p class="time">Hora: ' + time + ' ' + todayPost + '<img src=' + urlImage + '>' + '</img>');
+
+        /* $('#all-post-js').prepend("<div>" + "<img src='" + photoAuthor + "'/>" + '<p>' + author + '</p>' + '<p>' + content + '</p>' + '<p class="time">Hora: ' + time + ' ' + todayPost + '<img  class="ui fluid image" src=' + urlImage + '>' + '</img>'); */
+
+        $('#all-post-js').prepend('<div class="event"><div class="label"><img src="' + photoAuthor + '"></div><div class="content"><div class="summary"><a>' + author + '</a><div class="date">' + time + ' ' + todayPost + '</div></div><div class="extra text">' +
+        content + '</div><div class="ui fluid image"><a><img src="' + urlImage + '">              </a></div></div></div>')
+
+
+
       });
     })
   })
