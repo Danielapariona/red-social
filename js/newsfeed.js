@@ -113,27 +113,22 @@ sessionActive();
 recoverUserPost();
 
 function recoverUserPost() {
-
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      console.log(user.profile_picture);
-      firebase.database().ref('posts').on('value', function (snapshot) {
-        snapshot.forEach(function (e) {
-          var element = e.val();
-          console.log(element);
-          var author = element.author;
-          var content = element.content;
-          var urlImage = element.url;
-          var time = element.time;
-          var todayPost = element.today;
-          $('#all-post-js').prepend("<div><img src='" + user.photoURL + "'></img>" + '<p>' + author + '</p>' + '<p>' + content + '</p>' + '<img src=' + urlImage + '>' + '<img>' + '<p class="time">Hora: ' + time + ' ' + todayPost);
-        })
-      })
-    }
-  });
-
-
-
+  firebase.database().ref('posts').on('value', function (snapshot) {
+    snapshot.forEach(function (e) {
+      var element = e.val();
+      var uidAuthor = element.uid;
+      var starCountRef = firebase.database().ref('users/' + uidAuthor + '/profile_picture');
+      starCountRef.on('value', function (snapshot) {
+        var photoAuthor = snapshot.val();
+        var author = element.author;
+        var content = element.content;
+        var urlImage = element.url;
+        var time = element.time;
+        var todayPost = element.today;
+        $('#all-post-js').prepend("<div>" + "<img src='" + photoAuthor + "'/>" + '<p>' + author + '</p>' + '<p>' + content + '</p>' + '<p class="time">Hora: ' + time + ' ' + todayPost + '<img src=' + urlImage + '>' + '</img>');
+      });
+    })
+  })
 }
 
 function logout() {
